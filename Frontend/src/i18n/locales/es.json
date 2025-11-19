@@ -1,0 +1,107 @@
+{
+  "header": {
+    "title": "Generador QR",
+    "login": "Iniciar sesión"
+  },
+  "main": {
+    "title": "Generador de Código QR",
+    "subtitle": "Genera códigos QR para URLs o WhatsApp"
+  },
+  "form": {
+    "urlLabel": "URL de la página",
+    "whatsappLabel": "Número de WhatsApp",
+    "whatsappMessage": "Mensaje (opcional)",
+    "whatsappMessagePlaceholder": "Escribe un mensaje que se enviará automáticamente...",
+    "urlPlaceholder": "https://ejemplo.com",
+    "whatsappPlaceholder": "51999999999",
+    "sizeLabel": "Tamaño del código QR",
+    "lowQuality": "Baja calidad",
+    "highQuality": "Alta calidad",
+    "enableLogo": "Agregar logo al centro del QR",
+    "selectLogo": "Seleccionar logo",
+    "logoFormats": "Formatos: PNG, JPG, GIF. Máximo 10MB",
+    "logoPreview": "Vista previa del logo:",
+    "colorLabel": "Color del código QR",
+    "colorHint": "Usa el selector de color o escribe el código hexadecimal",
+    "formatLabel": "Formato de salida",
+    "generateButton": "Generar QR",
+    "generating": "Generando..."
+  },
+  "qr": {
+    "title": "Código QR Generado",
+    "size": "Tamaño",
+    "download": "Descargar QR",
+    "placeholder": "Código QR",
+    "placeholderText": "Aparecerá aquí",
+    "instructions": "Configura las opciones y presiona \"Generar QR\""
+  },
+  "sections": {
+    "whatIsQR": {
+      "title": "¿Qué es un código QR?",
+      "description1": "Un código QR (Quick Response) es un código de barras bidimensional que puede almacenar información como URLs, números de teléfono, mensajes de texto y más. Los códigos QR son escaneados fácilmente con la cámara de cualquier smartphone, lo que los hace ideales para compartir información de forma rápida y sin contacto.",
+      "description2": "Nuestra herramienta te permite generar códigos QR de forma gratuita, sin necesidad de registro y sin límites. Puedes crear códigos QR para enlaces web o para iniciar conversaciones de WhatsApp con un mensaje predefinido."
+    },
+    "howToUse": {
+      "title": "¿Cómo usar esta herramienta?",
+      "step1": {
+        "title": "Selecciona el tipo de QR",
+        "description": "Elige entre generar un código QR para una URL o para WhatsApp. Si eliges WhatsApp, podrás agregar un mensaje que se enviará automáticamente al escanear el código."
+      },
+      "step2": {
+        "title": "Ingresa la información",
+        "description": "Escribe la URL completa (por ejemplo: https://ejemplo.com) o el número de WhatsApp con código de país (por ejemplo: 51999999999 para Perú)."
+      },
+      "step3": {
+        "title": "Genera y descarga",
+        "description": "Haz clic en \"Generar QR\" y espera unos segundos. Una vez generado, podrás descargar el código QR en formato PNG para usarlo en tus materiales impresos o digitales."
+      }
+    },
+    "useCases": {
+      "title": "Casos de uso",
+      "marketing": {
+        "title": "Marketing y Publicidad",
+        "description": "Comparte enlaces a tus productos, promociones o páginas web en folletos, carteles y materiales publicitarios."
+      },
+      "social": {
+        "title": "Redes Sociales",
+        "description": "Facilita que tus seguidores accedan a tu perfil de WhatsApp o a tu sitio web desde tus publicaciones."
+      },
+      "business": {
+        "title": "Tarjetas de Presentación",
+        "description": "Agrega un código QR a tu tarjeta de presentación para que los contactos accedan fácilmente a tu información."
+      },
+      "restaurant": {
+        "title": "Menús de Restaurantes",
+        "description": "Proporciona acceso rápido a menús digitales o sistemas de pedidos online mediante códigos QR en las mesas."
+      },
+      "events": {
+        "title": "Eventos",
+        "description": "Comparte información de eventos, formularios de registro o grupos de WhatsApp para participantes."
+      },
+      "support": {
+        "title": "Soporte al Cliente",
+        "description": "Ofrece un canal directo de comunicación con WhatsApp para que los clientes contacten fácilmente."
+      }
+    }
+  },
+  "footer": {
+    "description": "Herramienta gratuita para generar códigos QR de forma rápida y sencilla. Sin registro, sin límites, sin complicaciones.",
+    "features": "Características",
+    "free": "100% Gratis",
+    "instant": "Generación instantánea",
+    "unlimited": "Sin límites de uso",
+    "madeBy": "Hecho por"
+  },
+  "errors": {
+    "invalidImage": "Por favor, selecciona un archivo de imagen válido",
+    "fileTooLarge": "El logo no debe superar los 10MB",
+    "logoRequired": "Por favor, selecciona un logo para agregar al QR",
+    "urlRequired": "Por favor, ingresa una URL",
+    "generateError": "Hubo un problema al generar el código QR",
+    "genericError": "Error"
+  },
+  "alerts": {
+    "comingSoon": "Muy pronto"
+  }
+}
+

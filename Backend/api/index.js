@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import QRCode from "qrcode";
@@ -5,11 +6,17 @@ import sharp from "sharp";
 
 const app = express();
 
+// Configurar CORS: permite localhost en desarrollo y el dominio de producción
+const allowedOrigins = process.env.CORS_ORIGINS 
+  ? process.env.CORS_ORIGINS.split(',').map(origin => origin.trim())
+  : [
+      "http://localhost:5173",
+      "http://localhost:3000"
+    ];
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:3000"
-  ]
+  origin: allowedOrigins,
+  credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
 

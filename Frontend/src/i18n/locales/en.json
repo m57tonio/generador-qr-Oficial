@@ -1,0 +1,107 @@
+{
+  "header": {
+    "title": "QR Generator",
+    "login": "Sign in"
+  },
+  "main": {
+    "title": "QR Code Generator",
+    "subtitle": "Generate QR codes for URLs or WhatsApp"
+  },
+  "form": {
+    "urlLabel": "Page URL",
+    "whatsappLabel": "WhatsApp Number",
+    "whatsappMessage": "Message (optional)",
+    "whatsappMessagePlaceholder": "Write a message that will be sent automatically...",
+    "urlPlaceholder": "https://example.com",
+    "whatsappPlaceholder": "1234567890",
+    "sizeLabel": "QR Code Size",
+    "lowQuality": "Low quality",
+    "highQuality": "High quality",
+    "enableLogo": "Add logo to QR center",
+    "selectLogo": "Select logo",
+    "logoFormats": "Formats: PNG, JPG, GIF. Maximum 10MB",
+    "logoPreview": "Logo preview:",
+    "colorLabel": "QR Code Color",
+    "colorHint": "Use the color picker or enter the hexadecimal code",
+    "formatLabel": "Output Format",
+    "generateButton": "Generate QR",
+    "generating": "Generating..."
+  },
+  "qr": {
+    "title": "Generated QR Code",
+    "size": "Size",
+    "download": "Download QR",
+    "placeholder": "QR Code",
+    "placeholderText": "Will appear here",
+    "instructions": "Configure the options and press \"Generate QR\""
+  },
+  "sections": {
+    "whatIsQR": {
+      "title": "What is a QR code?",
+      "description1": "A QR code (Quick Response) is a two-dimensional barcode that can store information such as URLs, phone numbers, text messages, and more. QR codes are easily scanned with any smartphone camera, making them ideal for sharing information quickly and contactlessly.",
+      "description2": "Our tool allows you to generate QR codes for free, without registration and without limits. You can create QR codes for web links or to start WhatsApp conversations with a predefined message."
+    },
+    "howToUse": {
+      "title": "How to use this tool?",
+      "step1": {
+        "title": "Select QR type",
+        "description": "Choose between generating a QR code for a URL or for WhatsApp. If you choose WhatsApp, you can add a message that will be sent automatically when scanning the code."
+      },
+      "step2": {
+        "title": "Enter information",
+        "description": "Enter the complete URL (for example: https://example.com) or the WhatsApp number with country code (for example: 1234567890)."
+      },
+      "step3": {
+        "title": "Generate and download",
+        "description": "Click \"Generate QR\" and wait a few seconds. Once generated, you can download the QR code in PNG format to use in your printed or digital materials."
+      }
+    },
+    "useCases": {
+      "title": "Use cases",
+      "marketing": {
+        "title": "Marketing and Advertising",
+        "description": "Share links to your products, promotions, or websites on flyers, posters, and advertising materials."
+      },
+      "social": {
+        "title": "Social Media",
+        "description": "Make it easy for your followers to access your WhatsApp profile or website from your posts."
+      },
+      "business": {
+        "title": "Business Cards",
+        "description": "Add a QR code to your business card so contacts can easily access your information."
+      },
+      "restaurant": {
+        "title": "Restaurant Menus",
+        "description": "Provide quick access to digital menus or online ordering systems using QR codes on tables."
+      },
+      "events": {
+        "title": "Events",
+        "description": "Share event information, registration forms, or WhatsApp groups for participants."
+      },
+      "support": {
+        "title": "Customer Support",
+        "description": "Offer a direct communication channel with WhatsApp so customers can easily contact you."
+      }
+    }
+  },
+  "footer": {
+    "description": "Free tool to generate QR codes quickly and easily. No registration, no limits, no complications.",
+    "features": "Features",
+    "free": "100% Free",
+    "instant": "Instant generation",
+    "unlimited": "Unlimited use",
+    "madeBy": "Made by"
+  },
+  "errors": {
+    "invalidImage": "Please select a valid image file",
+    "fileTooLarge": "Logo must not exceed 10MB",
+    "logoRequired": "Please select a logo to add to the QR",
+    "urlRequired": "Please enter a URL",
+    "generateError": "There was a problem generating the QR code",
+    "genericError": "Error"
+  },
+  "alerts": {
+    "comingSoon": "Coming soon"
+  }
+}
+
