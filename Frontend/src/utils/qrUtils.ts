@@ -1,4 +1,4 @@
-import type { QRType, OutputFormat } from "../types";
+import type { QRType, OutputFormat, WiFiSecurity } from "../types";
 import { jsPDF } from "jspdf";
 
 /**
@@ -14,15 +14,71 @@ export const generateWhatsAppUrl = (phoneNumber: string, message?: string): stri
 };
 
 /**
+ * Genera el string de WiFi en formato estándar para QR
+ * @param ssid - Nombre de la red WiFi
+ * @param password - Contraseña de la red
+ * @param security - Tipo de seguridad (WPA, WPA2, WEP, nopass)
+ * @param hidden - Si la red está oculta
+ * @returns String de WiFi en formato QR
+ */
+export const generateWiFiString = (
+  ssid: string,
+  password: string,
+  security: WiFiSecurity = "WPA",
+  hidden: boolean = false
+): string => {
+  // Escapar caracteres especiales en SSID y password
+  const escapeSpecialChars = (str: string): string => {
+    return str.replace(/[\\;:,"]/g, (match) => `\\${match}`);
+  };
+
+  const escapedSSID = escapeSpecialChars(ssid);
+  const escapedPassword = escapeSpecialChars(password);
+
+  let wifiString = `WIFI:T:${security};S:${escapedSSID};`;
+  
+  if (security !== "nopass" && password) {
+    wifiString += `P:${escapedPassword};`;
+  }
+  
+  if (hidden) {
+    wifiString += `H:true;`;
+  }
+  
+  wifiString += `;`;
+  
+  return wifiString;
+};
+
+/**
  * Genera la URL final según el tipo
- * @param type - Tipo de QR (url o whatsapp)
+ * @param type - Tipo de QR (url, whatsapp o wifi)
  * @param url - URL o número de teléfono
  * @param message - Mensaje para WhatsApp (opcional)
- * @returns URL final
+ * @param wifiData - Datos de WiFi (opcional)
+ * @returns URL final o string de WiFi
  */
-export const generateFinalUrl = (type: QRType, url: string, message?: string): string => {
+export const generateFinalUrl = (
+  type: QRType,
+  url: string,
+  message?: string,
+  wifiData?: {
+    ssid: string;
+    password: string;
+    security: WiFiSecurity;
+    hidden: boolean;
+  }
+): string => {
   if (type === "whatsapp") {
     return generateWhatsAppUrl(url, message);
+  }
+  if (type === "wifi" && wifiData) {
+    return generateWiFiString(
+      wifiData.ssid,
+      wifiData.password,
+      wifiData.security,
+      wifiData.hidden
+    );
   }
   return url;
 };

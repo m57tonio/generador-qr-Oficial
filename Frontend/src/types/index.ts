@@ -1,10 +1,15 @@
-export type QRType = "url" | "whatsapp";
+export type QRType = "url" | "whatsapp" | "wifi";
 export type OutputFormat = "jpg" | "png" | "pdf" | "svg";
 export type Language = "es" | "en" | "pt";
+export type WiFiSecurity = "WPA" | "WPA2" | "WEP" | "nopass";
 
 export interface QRFormData {
   url: string;
   whatsappMessage: string;
+  wifiSSID: string;
+  wifiPassword: string;
+  wifiSecurity: WiFiSecurity;
+  wifiHidden: boolean;
   type: QRType;
   qrSize: number;
   enableLogo: boolean;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { QRType, OutputFormat } from "../types";
+import type { QRType, OutputFormat, WiFiSecurity } from "../types";
 import { QR_CONFIG } from "../constants";
 import { QRService } from "../services/qrService";
 import { fileToBase64, isValidImageFile, isValidFileSize } from "../utils/fileUtils";
@@ -12,6 +12,14 @@ export interface UseQRGeneratorReturn {
   setUrl: (url: string) => void;
   whatsappMessage: string;
   setWhatsappMessage: (message: string) => void;
+  wifiSSID: string;
+  setWifiSSID: (ssid: string) => void;
+  wifiPassword: string;
+  setWifiPassword: (password: string) => void;
+  wifiSecurity: WiFiSecurity;
+  setWifiSecurity: (security: WiFiSecurity) => void;
+  wifiHidden: boolean;
+  setWifiHidden: (hidden: boolean) => void;
   type: QRType;
   setType: (type: QRType) => void;
   qrSize: number;
@@ -42,6 +50,10 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
   const { t } = useTranslation();
   const [url, setUrl] = useState<string>("");
   const [whatsappMessage, setWhatsappMessage] = useState<string>("");
+  const [wifiSSID, setWifiSSID] = useState<string>("");
+  const [wifiPassword, setWifiPassword] = useState<string>("");
+  const [wifiSecurity, setWifiSecurity] = useState<WiFiSecurity>("WPA");
+  const [wifiHidden, setWifiHidden] = useState<boolean>(false);
   const [type, setType] = useState<QRType>("url");
   const [qrSize, setQrSize] = useState<number>(QR_CONFIG.DEFAULT_SIZE);
   const [enableLogo, setEnableLogo] = useState<boolean>(false);
@@ -73,7 +85,17 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
   };
 
   const generateQRCode = async () => {
-    if (!url) return;
+    if (type === "wifi") {
+      if (!wifiSSID) {
+        alert(t("errors.wifiSSIDRequired"));
+        return;
+      }
+    } else {
+      if (!url) {
+        alert(t("errors.urlRequired"));
+        return;
+      }
+    }
 
     if (enableLogo && !logoFile) {
       alert(t("errors.logoRequired"));
@@ -83,7 +105,19 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
     setLoading(true);
 
     try {
-      const finalUrl = generateFinalUrl(type, url, whatsappMessage);
+      const finalUrl = generateFinalUrl(
+        type,
+        url,
+        whatsappMessage,
+        type === "wifi"
+          ? {
+              ssid: wifiSSID,
+              password: wifiPassword,
+              security: wifiSecurity,
+              hidden: wifiHidden,
+            }
+          : undefined
+      );
       let logoBase64 = null;
 
       if (enableLogo && logoFile) {
@@ -126,6 +160,14 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
     setUrl,
     whatsappMessage,
     setWhatsappMessage,
+    wifiSSID,
+    setWifiSSID,
+    wifiPassword,
+    setWifiPassword,
+    wifiSecurity,
+    setWifiSecurity,
+    wifiHidden,
+    setWifiHidden,
     type,
     setType,
     qrSize,

@@ -5,7 +5,7 @@
   },
   "main": {
     "title": "Generador de Código QR",
-    "subtitle": "Genera códigos QR para URLs o WhatsApp"
+    "subtitle": "Genera códigos QR para URLs, WhatsApp o WiFi"
   },
   "form": {
     "urlLabel": "URL de la página",
@@ -14,6 +14,14 @@
     "whatsappMessagePlaceholder": "Escribe un mensaje que se enviará automáticamente...",
     "urlPlaceholder": "https://ejemplo.com",
     "whatsappPlaceholder": "51999999999",
+    "wifiSSID": "Nombre de la red (SSID)",
+    "wifiSSIDPlaceholder": "MiRedWiFi",
+    "wifiPassword": "Contraseña",
+    "wifiPasswordPlaceholder": "Contraseña de la red",
+    "wifiSecurity": "Tipo de seguridad",
+    "wifiHidden": "Red oculta",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
     "sizeLabel": "Tamaño del código QR",
     "lowQuality": "Baja calidad",
     "highQuality": "Alta calidad",
@@ -97,6 +105,7 @@
     "fileTooLarge": "El logo no debe superar los 10MB",
     "logoRequired": "Por favor, selecciona un logo para agregar al QR",
     "urlRequired": "Por favor, ingresa una URL",
+    "wifiSSIDRequired": "Por favor, ingresa el nombre de la red WiFi",
     "generateError": "Hubo un problema al generar el código QR",
     "genericError": "Error"
   },

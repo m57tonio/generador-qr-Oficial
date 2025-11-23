@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Link, MessageCircle, Image as ImageIcon } from "lucide-react";
+import { useState } from "react";
+import { Link, MessageCircle, Image as ImageIcon, Wifi, Eye, EyeOff } from "lucide-react";
 import { QR_CONFIG } from "../../constants";
 import type { UseQRGeneratorReturn } from "../../hooks/useQRGenerator";
+import type { WiFiSecurity } from "../../types";
 
 interface QRFormProps {
   qrGenerator: UseQRGeneratorReturn;
@@ -9,11 +11,20 @@ interface QRFormProps {
 
 export const QRForm = ({ qrGenerator }: QRFormProps) => {
   const { t } = useTranslation();
+  const [showPassword, setShowPassword] = useState(false);
   const {
     url,
     setUrl,
     whatsappMessage,
     setWhatsappMessage,
+    wifiSSID,
+    setWifiSSID,
+    wifiPassword,
+    setWifiPassword,
+    wifiSecurity,
+    setWifiSecurity,
+    wifiHidden,
+    setWifiHidden,
     type,
     setType,
     qrSize,
@@ -57,52 +68,143 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
             <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>WhatsApp</span>
           </button>
+          <button
+            onClick={() => setType("wifi")}
+            className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base flex-1 sm:flex-none justify-center ${
+              type === "wifi"
+                ? "bg-purple-600 text-white"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+            }`}
+          >
+            <Wifi className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span>WiFi</span>
+          </button>
         </div>
 
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          {type === "url" ? t("form.urlLabel") : t("form.whatsappLabel")}
-        </label>
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            {type === "url" ? (
-              <Link className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
-            ) : (
-              <MessageCircle className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
-            )}
-            <input
-              type={type === "url" ? "url" : "tel"}
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder={
-                type === "url" ? t("form.urlPlaceholder") : t("form.whatsappPlaceholder")
-              }
-              className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border relative"
-              style={{
-                isolation: "isolate",
-                contain: "layout style paint",
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Campo de mensaje para WhatsApp */}
-        {type === "whatsapp" && (
-          <div className="mt-4 isolate">
+        {/* Campos según el tipo */}
+        {type === "wifi" ? (
+          <>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("form.wifiSSID")}
+                </label>
+                <div className="relative">
+                  <Wifi className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
+                  <input
+                    type="text"
+                    value={wifiSSID}
+                    onChange={(e) => setWifiSSID(e.target.value)}
+                    placeholder={t("form.wifiSSIDPlaceholder")}
+                    className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("form.wifiPassword")}
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={wifiPassword}
+                    onChange={(e) => setWifiPassword(e.target.value)}
+                    placeholder={t("form.wifiPasswordPlaceholder")}
+                    className="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 pr-10 text-sm sm:text-base border"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none"
+                    aria-label={showPassword ? t("form.hidePassword") : t("form.showPassword")}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" />
+                    ) : (
+                      <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("form.wifiSecurity")}
+                </label>
+                <select
+                  value={wifiSecurity}
+                  onChange={(e) => setWifiSecurity(e.target.value as WiFiSecurity)}
+                  className="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
+                >
+                  <option value="WPA">WPA/WPA2</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">Sin contraseña</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="wifiHidden"
+                  checked={wifiHidden}
+                  onChange={(e) => setWifiHidden(e.target.checked)}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="wifiHidden"
+                  className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
+                >
+                  {t("form.wifiHidden")}
+                </label>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              {t("form.whatsappMessage")}
+              {type === "url" ? t("form.urlLabel") : t("form.whatsappLabel")}
             </label>
-            <textarea
-              value={whatsappMessage}
-              onChange={(e) => setWhatsappMessage(e.target.value)}
-              placeholder={t("form.whatsappMessagePlaceholder")}
-              className="mt-1 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 border text-sm sm:text-base"
-              rows={3}
-              style={{
-                isolation: "isolate",
-                contain: "layout style paint",
-              }}
-            />
-          </div>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                {type === "url" ? (
+                  <Link className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
+                ) : (
+                  <MessageCircle className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
+                )}
+                <input
+                  type={type === "url" ? "url" : "tel"}
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder={
+                    type === "url" ? t("form.urlPlaceholder") : t("form.whatsappPlaceholder")
+                  }
+                  className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border relative"
+                  style={{
+                    isolation: "isolate",
+                    contain: "layout style paint",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Campo de mensaje para WhatsApp */}
+            {type === "whatsapp" && (
+              <div className="mt-4 isolate">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t("form.whatsappMessage")}
+                </label>
+                <textarea
+                  value={whatsappMessage}
+                  onChange={(e) => setWhatsappMessage(e.target.value)}
+                  placeholder={t("form.whatsappMessagePlaceholder")}
+                  className="mt-1 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 border text-sm sm:text-base"
+                  rows={3}
+                  style={{
+                    isolation: "isolate",
+                    contain: "layout style paint",
+                  }}
+                />
+              </div>
+            )}
+          </>
         )}
 
         {/* Slider de tamaño */}
@@ -272,7 +374,9 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
                 ? "bg-gray-400"
                 : type === "url"
                 ? "bg-blue-600 hover:bg-blue-700"
-                : "bg-green-600 hover:bg-green-700"
+                : type === "whatsapp"
+                ? "bg-green-600 hover:bg-green-700"
+                : "bg-purple-600 hover:bg-purple-700"
             } text-white rounded-md transition-colors disabled:cursor-not-allowed`}
           >
             {loading ? t("form.generating") : t("form.generateButton")}
