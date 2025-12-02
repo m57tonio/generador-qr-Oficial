@@ -1,12 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { Code2, Shield, Zap, Github, Linkedin, Facebook, FacebookIcon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Code2, Shield, Zap, Github, Linkedin, FacebookIcon } from "lucide-react";
 
 export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="mt-12 sm:mt-16 lg:mt-20 border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-10 pb-6 sm:pb-8 transition-colors">
-      <div className="flex flex-col md:flex-row justify-between gap-8 sm:gap-10 mb-6 sm:mb-8">
+    <footer className="mt-12 sm:mt-16 lg:mt-20 border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-10 pb-6 sm:pb-8 transition-colors bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between gap-8 sm:gap-10 mb-6 sm:mb-8">
         <div className="max-w-md">
           <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
             <Code2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -36,45 +38,80 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-      </div>
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-6 sm:pt-8">
-        <div className="flex justify-center">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-              <span>{t("footer.madeBy")}</span>
-              <span className="font-semibold text-gray-900 dark:text-white">Edu Armas</span>
-              <div className="flex items-center gap-3 ml-2">
-                <a
-                  href="https://github.com/BigNight1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                  aria-label="GitHub de Edu Armas"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/edu-armas/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  aria-label="LinkedIn de Edu Armas"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.facebook.com/profile.php?id=61558087662014"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  aria-label="Facebook BigNight"
-                >
-                  <FacebookIcon className="h-5 w-5" />
-                </a>
-                
-              </div>
+        </div>
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-6 sm:pt-8">
+        {/* Enlaces legales */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6 text-sm">
+          <Link
+            to="/about"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t("footer.about")}
+          </Link>
+          <Link
+            to="/faq"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t("footer.faq")}
+          </Link>
+          <Link
+            to="/terms"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t("footer.terms")}
+          </Link>
+          <Link
+            to="/privacy"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t("footer.privacy")}
+          </Link>
+          <Link
+            to="/cookies"
+            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t("footer.cookies")}
+          </Link>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+            <span>{t("footer.madeBy")}</span>
+            <span className="font-semibold text-gray-900 dark:text-white">Edu Armas</span>
+            <div className="flex items-center gap-3 ml-2">
+              <a
+                href="https://github.com/BigNight1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="GitHub de Edu Armas"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/edu-armas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn de Edu Armas"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61558087662014"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                aria-label="Facebook BigNight"
+              >
+                <FacebookIcon className="h-5 w-5" />
+              </a>
             </div>
           </div>
+          <p className="text-xs text-gray-500 dark:text-gray-500">
+            © {new Date().getFullYear()} {t("header.title")} 
+          </p>
+        </div>
         </div>
       </div>
     </footer>

@@ -10,15 +10,18 @@ import { HowToUse } from "./components/sections/HowToUse";
 import { UseCases } from "./components/sections/UseCases";
 import { ComingSoonModal } from "./components/common/ComingSoonModal";
 import { History } from "./components/history/History";
+import { Terms } from "./pages/Terms";
+import { Privacy } from "./pages/Privacy";
+import { Cookies } from "./pages/Cookies";
+import { FAQ } from "./pages/FAQ";
+import { About } from "./pages/About";
 import { useQRGenerator } from "./hooks/useQRGenerator";
 
 function Home() {
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const qrGenerator = useQRGenerator();
 
-  const handleLoginClick = () => {
-    setShowComingSoonModal(true);
-  };
+ 
 
   return (
     <>
@@ -61,6 +64,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <ComingSoonModal isOpen={showComingSoonModal} onClose={() => setShowComingSoonModal(false)} />

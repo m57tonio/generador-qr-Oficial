@@ -15,8 +15,14 @@ export const WhatIsQR = () => {
       <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
         {t("sections.whatIsQR.description1")}
       </p>
-      <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+      <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
         {t("sections.whatIsQR.description2")}
+      </p>
+      <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+        {t("sections.whatIsQR.description3")}
+      </p>
+      <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+        {t("sections.whatIsQR.description4")}
       </p>
     </section>
   );

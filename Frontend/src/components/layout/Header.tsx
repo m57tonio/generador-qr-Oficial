@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Code2, Globe, User, Moon, Sun, History, Menu, X, Clock } from "lucide-react";
 import { useDarkMode } from "../../hooks/useDarkMode";
 import { useLanguage } from "../../hooks/useLanguage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   onLoginClick: () => void;
@@ -18,6 +18,11 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const isHistoryPage = location.pathname === "/history";
+
+  // Cerrar el sidebar cuando cambia la ruta
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);

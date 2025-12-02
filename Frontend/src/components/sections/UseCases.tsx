@@ -14,6 +14,9 @@ export const UseCases = () => {
           {t("sections.useCases.title")}
         </h2>
       </div>
+      <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+        {t("sections.useCases.intro")}
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {useCaseKeys.map((key) => (
           <div key={key} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
