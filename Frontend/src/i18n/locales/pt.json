@@ -9,7 +9,8 @@
   },
   "main": {
     "title": "Gerador de Código QR",
-    "subtitle": "Gere códigos QR para URLs, WhatsApp, WiFi e Texto"
+    "subtitle": "Gere códigos QR para URLs, WhatsApp, WiFi e Texto",
+    "sectionTitle": "Crie seu código QR"
   },
   "form": {
     "urlLabel": "URL da página",

@@ -309,7 +309,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
 
         {/* Slider de tamaño */}
         <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+          <label id="qr-size-label" htmlFor="qr-size-slider" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             {t("form.sizeLabel")}
           </label>
           <div
@@ -319,6 +319,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
             onDragEnd={(e) => e.preventDefault()}
           >
             <input
+              id="qr-size-slider"
               type="range"
               min={QR_CONFIG.MIN_SIZE}
               max={QR_CONFIG.MAX_SIZE}
@@ -335,6 +336,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
               }}
               draggable="false"
               className="w-full h-5 bg-transparent cursor-pointer slider select-none"
+              aria-labelledby="qr-size-label"
             />
           </div>
           <div className="flex justify-between items-center mt-3">
@@ -412,11 +414,12 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
 
         {/* Selector de color */}
         <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label id="qr-color-label" htmlFor="qr-color-picker" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {t("form.colorLabel")}
           </label>
           <div className="flex items-center gap-3 isolate">
             <input
+              id="qr-color-picker"
               type="color"
               value={qrColor}
               onChange={(e) => setQrColor(e.target.value)}
@@ -425,6 +428,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
                 isolation: "isolate",
                 willChange: "auto",
               }}
+              aria-labelledby="qr-color-label"
             />
             <input
               type="text"
@@ -450,10 +454,11 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
 
         {/* Selector de formato */}
         <div className="mt-6 isolate">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label id="qr-format-label" htmlFor="qr-format-select" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {t("form.formatLabel")}
           </label>
           <select
+            id="qr-format-select"
             value={outputFormat}
             onChange={(e) =>
               setOutputFormat(e.target.value as "jpg" | "png" | "pdf" | "svg")
@@ -463,6 +468,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
               isolation: "isolate",
               contain: "layout style paint",
             }}
+            aria-labelledby="qr-format-label"
           >
             <option value="jpg">JPG</option>
             <option value="png">PNG</option>
